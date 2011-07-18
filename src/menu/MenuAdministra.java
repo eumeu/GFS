@@ -97,7 +97,8 @@ public class MenuAdministra extends JFrame implements ActionListener{
 		this.setSize(1284, 795);
 		this.setContentPane(getJContentPane());
 		this.setTitle("Menu Administratif");
-	setVisible(true);
+		setVisible(true);
+		menuGen.setVisible(false);
 	}
 
 	public void actionPerformed(ActionEvent e)

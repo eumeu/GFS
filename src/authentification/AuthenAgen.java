@@ -3,7 +3,7 @@ package authentification;
 //import java.awt.BorderLayout;
 
 
-
+import java.security.*;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
@@ -86,14 +86,23 @@ public class AuthenAgen extends JFrame implements ActionListener{
 			String pssw = txtpassword.getText();
 			String pw = new String(pssw);
 			String MPRecup = r.getString("Password");
-			if (LoginRecup.equals(log)& MPRecup.equals(pw) ) {
+			try {
+			    if (MD5Password.testPassword(pw, MPRecup))
+			  //  System.out.println("Les passwords sont vérifiés");
+			    	verif = true;
+					new menu.NewMenuAgent();
+					this.dispose();
+			    } catch (NoSuchAlgorithmException a) {
+			    a.printStackTrace();
+			    }
+			//if (LoginRecup.equals(log)& passwordencoded.equals(pw) ) {
 
-			verif = true;
-			new menu.NewMenuAgent();
-			this.dispose();
+				//verif = true;
+				//new menu.NewMenuAgent();
+				//this.dispose();
 
 
-			}
+		//	}
 			}
 			if (!verif) {
 			JOptionPane.showMessageDialog(null, "Verifier Login / Mot de passe", "Message d'erreur:", JOptionPane.ERROR_MESSAGE);

@@ -11,6 +11,7 @@ import javax.swing.WindowConstants;
 
 import java.awt.event.*;
 import java.awt.*;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 import javax.swing.*;
@@ -86,14 +87,15 @@ public class Authentification_secre extends JFrame implements ActionListener{
 			String pssw = txtpassword.getText();
 			String pw = new String(pssw);
 			String MPRecup = r.getString("Password");
-			if (LoginRecup.equals(log)& MPRecup.equals(pw) ) {
-
-			verif = true;
-			new menu.MenuSecre();
-			this.dispose();
-
-
-			}
+			try {
+			    if (MD5Password.testPassword(pw, MPRecup))
+			  //  System.out.println("Les passwords sont vérifiés");
+			    	verif = true;
+					new menu.MenuSecre();
+					this.dispose();
+			    } catch (NoSuchAlgorithmException a) {
+			    a.printStackTrace();
+			    }
 			}
 			if (!verif) {
 			JOptionPane.showMessageDialog(null, "Verifier Login / Mot de passe", "Message d'erreur:", JOptionPane.ERROR_MESSAGE);
