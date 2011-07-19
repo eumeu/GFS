@@ -1,26 +1,17 @@
 package etudiant;
 
-import java.awt.BorderLayout;
-
-
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-//import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
-//import javax.swing.ImageIcon;
-//import java.awt.GridBagLayout;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
-import java.awt.SystemColor;
 import java.awt.event.*;
-import java.awt.*;
 import java.sql.*;
 
 import javax.swing.JOptionPane;
@@ -71,7 +62,7 @@ public class FormInscription extends JFrame implements ActionListener {
 
 	private JPanel pane = null;
 
- JButton valider = null;
+			JButton valider = null;
 
 	private JButton annuler = null;
 
@@ -83,15 +74,15 @@ public class FormInscription extends JFrame implements ActionListener {
 
 	private JComboBox txtclasse = null;
 
-	private JComboBox txtdate = null;
+	private JTextField txtdate = null;
 
 	private JLabel MONTANTINS = null;
 
-	private JComboBox txtmontant = null;
+	private JTextField txtmontant = null;
 
 	private JLabel anneeinscript = null;
 
-	private JComboBox txtinscript = null;
+	private JTextField txtinscript = null;
 
 	private JLabel jLabel = null;
 
@@ -104,7 +95,6 @@ public class FormInscription extends JFrame implements ActionListener {
 	 /**
 	 * This is the default constructor
 	 */
-	//déclaration des fenêtres
 	
 	private MenuSecre menuSec = new MenuSecre();
 	
@@ -127,31 +117,7 @@ public class FormInscription extends JFrame implements ActionListener {
 		menuSec.setVisible(false);
 	}
 	
-	/**
-	 * This method initializes this
-	 * 
-	 * @return void
-	 */
-	/**public static Connection initConnection(){
-	       Connection co=null;
-	       String url="jdbc:mysql://localhost/base_gfs";
-	       try{
-	       	   Class.forName("org.gjt.mm.mysql.Driver");
-	       	   co=DriverManager.getConnection(url,"root","Sc0rpions");
 
-              JOptionPane.showMessageDialog(null,"connexion ok");
-		   }
-		   catch(ClassNotFoundException fe){
-	       	    System.out.println("drv intro");
-	       	   }
-		   catch(SQLException se){
-		   System.out.println("Connexion impossible");
-		   }
-		   return co;
-
-	}
-	
-*/
 	public void actionPerformed(ActionEvent e)
 	{
 		
@@ -159,29 +125,28 @@ public class FormInscription extends JFrame implements ActionListener {
 		if(e.getSource()==txtclasse){
 			if((txtclasse.getSelectedItem().toString().compareTo("LicPro")==0))
 			{
-				txtmontant.addItem("10000");
 				//txtmontant.removeAllItems();
-			//	txtmontant.addItem("10000");
+				//txtmontant.setText("10000");
 			}
 			if((txtclasse.getSelectedItem().toString().compareTo("M1 SIR")==0))
 			{
-				txtmontant.removeAllItems();
-				txtmontant.addItem("11000");
+			//	txtmontant.removeAllItems();
+				//txtmontant.addItem("11000");
 			}
 			if((txtclasse.getSelectedItem().toString().compareTo("M1 RETEL")==0))
 			{
-				txtmontant.removeAllItems();
-				txtmontant.addItem("12000");
+				//txtmontant.removeAllItems();
+				//txtmontant.addItem("12000");
 			}
 			if((txtclasse.getSelectedItem().toString().compareTo("M2 SIR")==0))
 			{
-				txtmontant.removeAllItems();
-				txtmontant.addItem("13000");
+				//txtmontant.removeAllItems();
+				//txtmontant.addItem("13000");
 			}
 			if((txtclasse.getSelectedItem().toString().compareTo("M2 RETEL")==0))
 			{
-				txtmontant.removeAllItems();
-				txtmontant.addItem("14000");
+				//txtmontant.removeAllItems();
+				//txtmontant.addItem("14000");
 			}
 		}
 		
@@ -194,10 +159,14 @@ public class FormInscription extends JFrame implements ActionListener {
 				txtlieunaisse.setText("");
 				txtnationalite.setText("");
 				txtadresse.setText("");
+				txtmontant.setText("");
+				txtinscript.setText("");
+
+
 				
 			}
 			if(e.getSource()==txtinscript){
-				if((txtinscript.getSelectedItem().toString().compareTo("2010-2011")==0))
+				if((txtinscript.getText().toString().compareTo("2010-2011")==0))
 				{
 			JOptionPane.showMessageDialog(null," veuillez choisir svp l'annee en cours...");
 			}
@@ -213,7 +182,6 @@ public class FormInscription extends JFrame implements ActionListener {
 					
 					if(e.getSource()==quitter)
 					{
-					//new authentification.AutorisationSecretaire();	
 					this.dispose();
 					menuSec.setVisible(true); 
 					}
@@ -235,16 +203,15 @@ public class FormInscription extends JFrame implements ActionListener {
 			String lieunaiss=txtlieunaisse.getText();
 			String nationalite=txtnationalite.getText();
 			String adresse=txtadresse.getText();
-			String date=(String)txtdate.getSelectedItem();
+			String date=(String)txtdate.getText();
 			
-			String annee=(String)txtinscript.getSelectedItem();
+			String annee=(String)txtinscript.getText();
 			
 				String classe=(String)txtclasse.getSelectedItem();
 			
-			String monta=(String)txtmontant.getSelectedItem();
+			String monta=(String)txtmontant.getText();
 			
-			//Connection maco=initConnection();
-			//if(maco==null)return;
+			
 			try{
 				
 				Statement state = authentification.Connect.getInstance()
@@ -259,17 +226,16 @@ public class FormInscription extends JFrame implements ActionListener {
 				while(rst.next())
 				{  String cla=rst.getString("classe");
 				String ann=rst.getString("moisInscript");
-				if(num.equals(rst.getString("numero"))&&(txtclasse.getSelectedItem().equals(rst.getString("classe"))&&(txtinscript.getSelectedItem().equals(rst.getString("moisInscript"))))) 
+				if(num.equals(rst.getString("numero"))&&(txtclasse.getSelectedItem().equals(rst.getString("classe"))&&(txtinscript.getText().equals(rst.getString("moisInscript"))))) 
 				
 					JOptionPane.showMessageDialog(null,"Ce numero :"+num+" est deja inscrit en classe "+cla+" pour l'annee "+ann+" ");
 		
 				}
 				
 						
-	        String req2="INSERT INTO `etudiant` VALUES('"+num+"','"+nom+"','"+prenom+"','"+datenaiss+"','"+lieunaiss+"','"+nationalite+"','"+adresse+"','"+date+annee+"','"+classe+"','"+monta+"')";
+	        String req2="INSERT INTO `etudiant` VALUES('"+num+"','"+nom+"','"+prenom+"','"+datenaiss+"','"+lieunaiss+"','"+nationalite+"','"+adresse+"','"+date+" "+annee+"','"+classe+"','"+monta+"')";
 
 	       int c=state.executeUpdate(req2);
-	      //JOptionPane.showMessageDialog(null,req2);
 	        if(c==1)
 				JOptionPane.showMessageDialog(null," Insertion reussie.....");
 	        txtnum.setText("");
@@ -279,6 +245,8 @@ public class FormInscription extends JFrame implements ActionListener {
 			txtlieunaisse.setText("");
 			txtnationalite.setText("");
 			txtadresse.setText("");
+			txtinscript.setText("");
+			txtmontant.setText("");
 			rst.close();
 			state.close();
 			}
@@ -298,24 +266,19 @@ public class FormInscription extends JFrame implements ActionListener {
 		if (jContentPane == null) {
 			jLabel = new JLabel();
 			jLabel.setBounds(new Rectangle(3, 109, 301, 407));
-			//jLabel.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/inscrir.jpg")));
-		//	jLabel.setIcon(new ImageIcon("images/inscrir.jpg"));
 			jLabel.setText(" ");
+			
 			loj = new JLabel();
 			loj.setBounds(new Rectangle(593, 108, 184, 160));
-			//loj.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/C.jpg")));
 			loj.setIcon(new ImageIcon("images/ucad.jpg"));
-
 			loj.setText(" ");
+			
 			logo = new JLabel();
 			logo.setBounds(new Rectangle(-24, -1, 1309, 101));
-			//logo.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/inscr.gif")));
-			logo.setIcon(new ImageIcon("images/inscr.jpg"));
-
 			logo.setText(" ");
+			
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-			//jContentPane.setBackground(SystemColor.info);
 			jContentPane.add(logo, null);
 			jContentPane.add(loj, null);
 			jContentPane.add(getPan(), null);
@@ -394,7 +357,6 @@ public class FormInscription extends JFrame implements ActionListener {
 			pan = new JPanel();
 			pan.setLayout(null);
 			pan.setBounds(new Rectangle(472, 280, 413, 341));
-			//pan.setBackground(Color.cyan);
 			pan.add(num, null);
 			pan.add(NOM, null);
 			pan.add(PRENOM, null);
@@ -514,7 +476,7 @@ public class FormInscription extends JFrame implements ActionListener {
 
 	/**
 	 * This method initializes pane	
-	 * 	
+	 * 	 
 	 * @return javax.swing.JPanel	
 	 */
 	private JPanel getPane() {
@@ -522,7 +484,6 @@ public class FormInscription extends JFrame implements ActionListener {
 			pane = new JPanel();
 			pane.setLayout(null);
 			pane.setBounds(new Rectangle(472, 632, 417, 55));
-		//	pane.setBackground(Color.cyan);
 			pane.add(getValider(), null);
 			pane.add(getPrecedent(), null);
 			pane.add(getAnnuler(), null);
@@ -539,7 +500,6 @@ public class FormInscription extends JFrame implements ActionListener {
 		if (valider == null) {
 			valider = new JButton();
 			valider.setBounds(new Rectangle(12, 9, 133, 33));
-			//valider.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/enregistrer.gif")));
 			valider.setIcon(new ImageIcon("images/enregistrer.gif"));
 
 			valider.setText("Valider");
@@ -572,7 +532,6 @@ public class FormInscription extends JFrame implements ActionListener {
 		if (precedent == null) {
 			precedent = new JButton();
 			precedent.setText("Precedent");
-		//	precedent.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/retour.gif")));
 			precedent.setIcon(new ImageIcon("images/retour.gif"));
 
 			precedent.setBounds(new Rectangle(148, 9, 131, 34));
@@ -590,7 +549,6 @@ public class FormInscription extends JFrame implements ActionListener {
 		if (quitter == null) {
 			quitter = new JButton();
 			quitter.setBounds(new Rectangle(1081, 703, 159, 28));
-			//quitter.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/quitter.gif")));
 			quitter.setIcon(new ImageIcon("images/quitter.gif"));
 
 			quitter.setText("Quitter");
@@ -607,10 +565,7 @@ public class FormInscription extends JFrame implements ActionListener {
 	private JComboBox getTxtclasse() {
 		if (txtclasse == null) {
 			txtclasse = new JComboBox();
-		//	txtclasse.addItem("LPGI1");
-			//txtclasse.addItem("LPGI2");
-			//txtclasse.addItem("LPGI3");
-			//txtclasse.addItem("LPRT1");
+		
 			txtclasse.addItem("LicPro");
 			txtclasse.addItem("M1 SIR");
 			txtclasse.addItem("M1 RETEL");
@@ -628,17 +583,12 @@ public class FormInscription extends JFrame implements ActionListener {
 	 * 	
 	 * @return javax.swing.JComboBox	
 	 */
-	private JComboBox getTxtdate() {
+	private JTextField getTxtdate() {
 		if (txtdate == null) {
-			txtdate = new JComboBox();
-			txtdate.addItem("OCTOBRE");
-			txtdate.addItem("NOVEMBRE");
-			txtdate.addItem("DECEMBRE");
-			/*txtdate.addItem("MARS");
-			txtdate.addItem("AVRIL");
-			txtdate.addItem("MAI");
-			txtdate.addItem("JUIN");
-			txtdate.addItem("JUILLET");*/
+			txtdate = new JTextField();
+			//txtdate.addItem("OCTOBRE");
+			//txtdate.addItem("NOVEMBRE");
+			//txtdate.addItem("DECEMBRE");
 			txtdate.setBounds(new Rectangle(165, 227, 131, 21));
 			txtdate.addActionListener(this);
 		}
@@ -650,13 +600,9 @@ public class FormInscription extends JFrame implements ActionListener {
 	 * 	
 	 * @return javax.swing.JComboBox	
 	 */
-	private JComboBox getTxtmontant() {
+	private JTextField getTxtmontant() {
 		if (txtmontant == null) {
-			txtmontant = new JComboBox();
-			/*txtmontant.addItem("150000");
-			txtmontant.addItem("250000");
-			txtmontant.addItem("60000");
-			txtmontant.addItem("55000");*/
+			txtmontant = new JTextField();
 			txtmontant.setBounds(new Rectangle(163, 312, 134, 22));
 			txtmontant.addActionListener(this);
 		}
@@ -668,12 +614,10 @@ public class FormInscription extends JFrame implements ActionListener {
 	 * 	
 	 * @return javax.swing.JComboBox	
 	 */
-	private JComboBox getTxtinscript() {
+	private JTextField getTxtinscript() {
 		if (txtinscript == null) {
-			txtinscript = new JComboBox();
-			//txtinscript.addItem("2008-2009");
-			//txtinscript.addItem("2009-2010");
-			txtinscript.addItem("2010-2011");
+			txtinscript = new JTextField();
+			//txtinscript.addItem("2010-2011");
 			txtinscript.setBounds(new Rectangle(165, 255, 131, 21));
 			txtinscript.addActionListener(this);
 		}
@@ -725,4 +669,4 @@ public class FormInscription extends JFrame implements ActionListener {
 		return panA12;
 	}
 
-}  //  @jve:decl-index=0:visual-constraint="-258,-77"
+}  

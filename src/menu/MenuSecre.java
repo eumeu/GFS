@@ -4,27 +4,23 @@ package menu;
 
 
 import javax.swing.ImageIcon;
+
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 import javax.swing.JFrame;
-//import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
-//import java.awt.GridBagLayout;
 import javax.swing.JButton;
-//import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.SystemColor;
 import java.awt.event.*;
-//import java.awt.*;
 import java.sql.*;
 
 import javax.swing.JOptionPane;
 import java.awt.event.KeyEvent;
 
-import menu.*;
+import menu.MenuAdministra;
 
 
 public class MenuSecre extends JFrame implements ActionListener{
@@ -39,22 +35,20 @@ public class MenuSecre extends JFrame implements ActionListener{
 
 	private JButton saisie_etudiant = null;
 
-	//private JButton liste_paiement = null;
 
 	private JLabel logo = null;
 
 	private JButton quitter = null;
 
 	private JButton majetu = null;
+	
 	private JLabel valier = null;
+	
 	private JLabel valier1 = null;
-
 
 	private JLabel jLabel = null;
 
 	private JLabel jLabel1 = null;
-
-	//private JLabel jLabel2 = null;
 
 	private JLabel jLabel3 = null;
 	
@@ -62,10 +56,7 @@ public class MenuSecre extends JFrame implements ActionListener{
 	
 	private JLabel valier1button = null;
 
-
 	private JLabel jLabel31 = null;
-
-	private JLabel jLabel32 = null;
 
 	private JPanel panA1 = null;
 
@@ -75,7 +66,6 @@ public class MenuSecre extends JFrame implements ActionListener{
 	
 	private JButton valide_paiement = null;
 	
-	//déclaration des fenêtres
 	private MenuAdministra menuAdmin = new MenuAdministra();
 
 	/**
@@ -111,9 +101,7 @@ public class MenuSecre extends JFrame implements ActionListener{
 		int b=0;
 	
 		String a=JOptionPane.showInputDialog(null,"donner le numero de l'etudiant !");
-		//String c=JOptionPane.showInputDialog(null,"donner la classe de l'etudiant dont vous voulez valider son paiement");
-		//Connection maco=initConnection();
-		//if(maco==null)return;
+		
 		try
 		{
 			Statement state = authentification.Connect.getInstance()
@@ -128,9 +116,6 @@ public class MenuSecre extends JFrame implements ActionListener{
 				if(a.equals(rs.getString("numero")))
 				{
 					b=1;
-				
-					
-				
 				paiement.FormPayement tr=new paiement.FormPayement();
 				tr.txtnum.setText(rs.getString("numero").toString());
 				tr.txtnom.setText(rs.getString("nom").toString());
@@ -140,16 +125,11 @@ public class MenuSecre extends JFrame implements ActionListener{
 				tr.txtnationalite.setText(rs.getString("nationalite").toString());
 				tr.txtclasse.setText(rs.getString("classe").toString());
 				tr.ZZZZ.setEnabled(false);
-				//this.dispose();
 				
 				}	
 				}
 				
 				
-					
-				
-			
-			//maco.close();
 			rs.close();
 			state.close();
 			if(b==0)JOptionPane.showMessageDialog(null, "numero n'existe pas dans la base");
@@ -169,11 +149,7 @@ public class MenuSecre extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e)
 	{
 		
-		//this.setVisible(false);
-
-		
 		if(e.getSource()==majetu){
-			//this.setVisible(false);
 			etudiant.MajEt b=	new etudiant.MajEt();
 			this.dispose();
 
@@ -193,21 +169,10 @@ public class MenuSecre extends JFrame implements ActionListener{
 			
 		}
 		if(e.getSource()==saisie_etudiant){
-			//this.setVisible(false);
 			new etudiant.FormInscription();
 			this.dispose();
 
 		}
-		//if(e.getSource()==liste_paiement){
-			//this.dispose();
-			//paiement.DatePayement	c=	new paiement.DatePayement();
-			//c.mois.setEnabled(false);
-		//	c.txtclasse.setEnabled(false);
-		//	c.etnonpayer.setEnabled(false);
-		//	c.etpayer.setEnabled(false);
-			//this.dispose();
-			//this.dispose();
-	//	}
 		
 		if(e.getSource()==valide_paiement )
 		{
@@ -217,24 +182,13 @@ public class MenuSecre extends JFrame implements ActionListener{
 		
 		if(e.getSource()==cherchEtPaye ){
 			
-			/*
-			DatePayement	c=	new DatePayement();
-			c.txtnum.setEnabled(true);
-			c.mois.setEnabled(false);
-			c.txtclasse.setEnabled(false);
-			c.etnonpayer.setEnabled(false);
-			
-		c.etpayer.setEnabled(false);
-	*/
 			new paiement.Etupayer();
 			this.dispose();
 
 		}
 		if(e.getSource()==quitter){
-		//	new authentification.AutorisationSecretaire();
 			this.dispose();
 			menuAdmin.setVisible(true);
-			//this.setVisible(false);
 		}
 	}
 	
@@ -261,11 +215,6 @@ public class MenuSecre extends JFrame implements ActionListener{
 			jLabel31.setIcon(new ImageIcon("images/nextdown.jpg"));
 			
 			
-			//jLabel32 = new JLabel();
-			//jLabel32.setBounds(new Rectangle(462, 398, 31, 24));
-			//jLabel32.setText(" ");
-			//jLabel32.setIcon(new ImageIcon("images/nextdown.jpg"));
-			
 			valierbutton = new JLabel();
 			valierbutton.setBounds(new Rectangle(462, 440, 31, 24));
 			valierbutton.setText(" ");
@@ -287,12 +236,6 @@ public class MenuSecre extends JFrame implements ActionListener{
 			jLabel1.setDisplayedMnemonic(KeyEvent.VK_UNDEFINED);
 			jLabel1.setForeground(Color.black);
 			jLabel1.setText("Editer infos etudiant ");
-			
-			//jLabel2 = new JLabel();
-			//jLabel2.setBounds(new Rectangle(107, 402, 347, 20));
-			//jLabel2.setForeground(Color.black);
-			//jLabel2.setText("Pour consulter Liste des paiements  dans la Base de donnee ");
-			
 			
 			valier = new JLabel();
 			valier.setBounds(new Rectangle(108, 451, 353, 22));
@@ -324,25 +267,18 @@ public class MenuSecre extends JFrame implements ActionListener{
 			menu_etudiant.setText("");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-			//jContentPane.setBackground(SystemColor.info);
 			jContentPane.add(menu_etudiant, null);
 			jContentPane.add(getPANO(), null);
 			jContentPane.add(logo, null);
 			jContentPane.add(getQuitter(), null);
 			jContentPane.add(jLabel, null);
 			jContentPane.add(jLabel1, null);
-		//	jContentPane.add(jLabel2, null);
 			jContentPane.add(jLabel3, null);
 			jContentPane.add(jLabel31, null);
-			//jContentPane.add(jLabel32, null);
 			jContentPane.add(valier, null);
 			jContentPane.add(valier1, null);
 			jContentPane.add(valier1button, null);
 			jContentPane.add(valierbutton, null);
-
-
-
-
 			jContentPane.add(getPanA1(), null);
 			jContentPane.add(getPanA11(), null);
 		}
@@ -359,9 +295,7 @@ public class MenuSecre extends JFrame implements ActionListener{
 			PANO = new JPanel();
 			PANO.setLayout(null);
 			PANO.setBounds(new Rectangle(526, 272, 257, 268));
-			//PANO.setBackground(Color.cyan);
 			PANO.add(getSaisie_etudiant(), null);
-			//PANO.add(getListe_paiement(), null);
 			PANO.add(getMajetu(), null);
 			PANO.add(getValide_paiement(), null);
 			PANO.add(getCherchEtPaye(), null);
@@ -380,7 +314,6 @@ public class MenuSecre extends JFrame implements ActionListener{
 			saisie_etudiant = new JButton();
 			saisie_etudiant.setBounds(new Rectangle(12, 25, 232, 31));
 			saisie_etudiant.setFont(new Font("Elephant", Font.BOLD, 14));
-			//saisie_etudiant.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/enregistrer.gif")));
 			saisie_etudiant.setIcon(new ImageIcon("images/enregistrer.gif"));
 
 			saisie_etudiant.setForeground(Color.black);
@@ -408,24 +341,6 @@ public class MenuSecre extends JFrame implements ActionListener{
 		return majetu;
 	}
 
-	/**
-	 * This method initializes liste_paiement	
-	 * 	
-	 * @return javax.swing.JButton	
-	 
-	private JButton getListe_paiement() {
-		if (liste_paiement == null) {
-			liste_paiement = new JButton();
-			liste_paiement.setBounds(new Rectangle(13, 121, 230, 29));
-			liste_paiement.setFont(new Font("Elephant", Font.BOLD, 14));
-		//	liste_paiement.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/afficher class.gif")));
-			liste_paiement.setForeground(Color.black);
-			liste_paiement.setText("Liste des Paiements");
-			liste_paiement.addActionListener(this);
-		}
-		return liste_paiement;
-	}
-*/
 	/**
 	 * This method initializes valide_paiement	
 	 * 	
@@ -467,10 +382,7 @@ public class MenuSecre extends JFrame implements ActionListener{
 			quitter = new JButton();
 			quitter.setBounds(new Rectangle(1050, 586, 172, 29));
 			quitter.setText("Quitter");
-		//	quitter.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/quitter.gif")));
 			quitter.setIcon(new ImageIcon("images/quitter.gif"));
-
-			
 			quitter.setFont(new Font("Elephant", Font.BOLD, 14));
 	        quitter.addActionListener(this);
 		}
@@ -508,6 +420,6 @@ public class MenuSecre extends JFrame implements ActionListener{
 		return panA11;
 	}
 
-}  //  @jve:decl-index=0:visual-constraint="-13,-18"
+} 
 
 

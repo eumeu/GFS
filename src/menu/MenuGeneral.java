@@ -101,31 +101,22 @@ public void actionPerformed(ActionEvent e){
 		if (jContentPane == null) {
 			clss = new JLabel();
 			clss.setBounds(new Rectangle(1, 101, 1029, 115));
-			
-			//clss.setIcon(new ImageIcon("images/cls.gif"));
 			clss.setText(" ");
 			TITRE = new JLabel();
 			TITRE.setBounds(new Rectangle(0, 0, 1268, 105));
 			TITRE.setText("FST - Gestion des Fonctions de Services ");
 			jLabel2 = new JLabel();
-			//jLabel2.setIcon(new javax.swing.ImageIcon("/ressources/imagesui.jpg"));
 			jLabel2.setBounds(new Rectangle(127, 136, 84, 96));
 			jLabel2.setText(" ");
 			jLabel1 = new JLabel();
 			jLabel1.setBounds(new Rectangle(16, 266, 66, 64));
-			//jLabel1.setIcon(new javax.swing.ImageIcon("/ressources/VDAsenegal.gif"));
-		//	jLabel1.setIcon(new ImageIcon("images/VDAsenegal.gif"));
-
 			jLabel1.setText(" ");
 			LOGO = new JLabel();
 			LOGO.setBounds(new Rectangle(548, 228, 170, 157));
 			LOGO.setIcon(new ImageIcon("images/ucad.jpg"));
-			//LOGO.setIcon(new ImageIcon("images/ucad.jpg"));
-
 			LOGO.setText(" ");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-			//jContentPane.setBackground(Color.white);
 			jContentPane.add(LOGO, null);
 			jContentPane.add(getPAN(), null);
 			jContentPane.add(jLabel1, null);
@@ -148,7 +139,6 @@ public void actionPerformed(ActionEvent e){
 			PAN = new JPanel();
 			PAN.setLayout(null);
 			PAN.setBounds(new Rectangle(511, 400, 250, 268));
-		//	PAN.setBackground(Color.blue);
 			PAN.add(getEspEtudiant(), null);
 			PAN.add(getEspadmin(), null);
 			PAN.add(getQuitter(), null);
@@ -253,4 +243,4 @@ public void actionPerformed(ActionEvent e){
 		return imag1;
 	}
 
-}  //  @jve:decl-index=0:visual-constraint="-99,-52"
+}  

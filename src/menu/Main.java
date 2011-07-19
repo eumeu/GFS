@@ -43,14 +43,14 @@ for (int j = 1; j < 100; j++) // on fait une boucle pour que la JProgressBar "av
 progress.setValue(j);
 try
 {
-monThread.sleep(rappidite);
+Thread.sleep(rappidite);
 }
 catch(Exception e)
 {
 e.printStackTrace();
 }
 }
-cadre.dispose(); //on ferme le cadre (le chergement est fini!)
+cadre.dispose(); //on ferme le cadre (le chargement est fini!)
 SwingUtilities.invokeLater(new Runnable() {
 	public void run() {
 		MenuGeneral application = new MenuGeneral();

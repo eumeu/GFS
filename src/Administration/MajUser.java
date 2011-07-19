@@ -178,7 +178,7 @@ private MenuAdmin menuAdmin = new MenuAdmin();
 						txtnom.setText(nom);
 						txtprenom.setText(pre);
 						txtlogin.setText(login);
-						txtpassword.setText(pass);
+						txtpassword.setText("");
 						txtprofil.setText(profil);
 						
 						supprimer.setEnabled(true);

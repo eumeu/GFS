@@ -1,29 +1,20 @@
 package menu;
 
-import java.awt.BorderLayout;
-
-
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
-
-import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
-import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.*;
-import java.awt.*;
 import java.sql.*;
-
 import javax.swing.JOptionPane;
-import menu.*;
+import menu.MenuAdministra;
 
 
 public class MenuAgen extends JFrame implements ActionListener{
@@ -42,17 +33,11 @@ public class MenuAgen extends JFrame implements ActionListener{
 
 	private JButton quitter = null;
 
-	//private JButton cherchEtPaye = null;
-
 	private JLabel valier = null;
-
-	private JLabel AFF = null;
 
 	private JLabel valier1 = null;
 
 	private JLabel XX = null;
-
-	private JLabel XX1 = null;
 
 	private JLabel XX2 = null;
 
@@ -63,6 +48,7 @@ public class MenuAgen extends JFrame implements ActionListener{
 	private JPanel panA11 = null;
 
 	//déclaration des fenêtres
+	
 	private MenuAdministra menuAdmin = new MenuAdministra();
 	/**
 	 * This is the default constructor
@@ -94,9 +80,7 @@ public class MenuAgen extends JFrame implements ActionListener{
 	public void afficher(){
 		int b=0;
 	
-		String a=JOptionPane.showInputDialog(null,"Donner le numero de l'etudiant !");
-		//String c=JOptionPane.showInputDialog(null,"donner la classe de l'etudiant dont vous voulez valider son paiement");
-		
+		String a=JOptionPane.showInputDialog(null,"Donner le numero de l'etudiant !");		
 		try
 		{
 			Statement state = authentification.Connect.getInstance()
@@ -122,16 +106,10 @@ public class MenuAgen extends JFrame implements ActionListener{
 				tr.txtlieunaisse.setText(rs.getString("lieunais").toString());
 				tr.txtnationalite.setText(rs.getString("nationalite").toString());
 				tr.txtclasse.setText(rs.getString("classe").toString());
-				tr.ZZZZ.setEnabled(false);
-				//this.dispose();
-				
+				tr.ZZZZ.setEnabled(false);				
 				}	
 				}
 				
-				
-					
-				
-			
 			rs.close();
 			state.close();
 			if(b==0)JOptionPane.showMessageDialog(null, "numero n'existe pas dans la base");
@@ -174,22 +152,6 @@ public class MenuAgen extends JFrame implements ActionListener{
 		this.dispose();		
 		menuAdmin.setVisible(true);
 	}
-	//if(e.getSource()==cherchEtPaye ){
-	
-		/*
-		DatePayement	c=	new DatePayement();
-		c.txtnum.setEnabled(true);
-		c.mois.setEnabled(false);
-		c.txtclasse.setEnabled(false);
-		c.etnonpayer.setEnabled(false);
-		
-	c.etpayer.setEnabled(false);
-*/
-	//new paiement.Etupayer();
-		//this.dispose();
-
-	//}
-	
 	
 		}
 
@@ -203,16 +165,11 @@ public class MenuAgen extends JFrame implements ActionListener{
 		if (jContentPane == null) {
 			cc = new JLabel();
 			cc.setBounds(new Rectangle(3, -2, 1284, 94));
-			//cc.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/CHARGE.jpg")));
 			cc.setText(" ");
 			XX2 = new JLabel();
 			XX2.setBounds(new Rectangle(454, 413, 17, 16));
 			XX2.setText(" ");
 			XX2.setIcon(new ImageIcon("images/nextdown.jpg"));
-			//XX1 = new JLabel();
-			//XX1.setBounds(new Rectangle(453, 365, 16, 16));
-			//XX1.setText(" ");
-		//	XX1.setIcon(new ImageIcon("images/btn1.gif"));
 			XX = new JLabel();
 			XX.setBounds(new Rectangle(453, 314, 14, 16));
 			XX.setIcon(new ImageIcon("images/nextdown.jpg"));
@@ -223,12 +180,6 @@ public class MenuAgen extends JFrame implements ActionListener{
 			valier1.setBackground(Color.black);
 			valier1.setForeground(Color.black);
 			valier1.setText("Pour afficher Paiement d'un etudiant  a partir d'un numero :");
-			//AFF = new JLabel();
-			//AFF.setBounds(new Rectangle(27, 362, 385, 19));
-			//AFF.setFont(new Font("Elephant", Font.BOLD, 12));
-			//AFF.setBackground(Color.black);
-			//AFF.setForeground(Color.black);
-			//AFF.setText("Pour afficher Liste des Paiements d'une classe donnee  :");
 			valier = new JLabel();
 			valier.setBounds(new Rectangle(29, 309, 386, 22));
 			valier.setFont(new Font("Elephant", Font.BOLD, 12));
@@ -241,15 +192,12 @@ public class MenuAgen extends JFrame implements ActionListener{
 			logo.setText("");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-		//	jContentPane.setBackground(SystemColor.info);
 			jContentPane.add(getPANO(), null);
 			jContentPane.add(logo, null);
 			jContentPane.add(getQuitter(), null);
 			jContentPane.add(valier, null);
-			//jContentPane.add(AFF, null);
 			jContentPane.add(valier1, null);
 			jContentPane.add(XX, null);
-			//jContentPane.add(XX1, null);
 			jContentPane.add(XX2, null);
 			jContentPane.add(cc, null);
 			jContentPane.add(getPanA1(), null);
@@ -268,10 +216,8 @@ public class MenuAgen extends JFrame implements ActionListener{
 			PANO = new JPanel();
 			PANO.setLayout(null);
 			PANO.setBounds(new Rectangle(529, 284, 257, 205));
-			//PANO.setBackground(Color.cyan);
 			PANO.add(getValide_paiement(), null);
 			PANO.add(getListe_paiement(), null);
-		//	PANO.add(getCherchEtPaye(), null);
 		}
 		return PANO;
 	}
@@ -318,31 +264,14 @@ public class MenuAgen extends JFrame implements ActionListener{
 			quitter = new JButton();
 			quitter.setBounds(new Rectangle(1046, 624, 171, 35));
 			quitter.setText("Quitter");
-			//quitter.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/quitter.gif")));
 			quitter.setIcon(new ImageIcon("images/quitter.gif"));
-
 			quitter.setFont(new Font("Elephant", Font.BOLD, 14));
 	        quitter.addActionListener(this);
 		}
 		return quitter;
 	}
 
-	/**
-	 * This method initializes cherchEtPaye	
-	 * 	
-	 * @return javax.swing.JButton	
 	
-	private JButton getCherchEtPaye() {
-		//if (cherchEtPaye == null) {
-			//cherchEtPaye = new JButton();
-			//cherchEtPaye.setText("Chercher_Par Etud");
-			//cherchEtPaye.setBounds(new Rectangle(27, 126, 202, 31));
-			//cherchEtPaye.setFont(new Font("Elephant", Font.BOLD, 14));
-			//cherchEtPaye.addActionListener(this);
-		//}
-		//return cherchEtPaye;
-	}
-
 	/**Etudiant
 	 * This method initializes panA1	
 	 * 	
@@ -373,5 +302,5 @@ public class MenuAgen extends JFrame implements ActionListener{
 		return panA11;
 	}
 
-}  //  @jve:decl-index=0:visual-constraint="-13,-18"
+}  
 

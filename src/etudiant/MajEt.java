@@ -1,7 +1,5 @@
 package etudiant;
 
-import java.awt.BorderLayout;
-import menu.*;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,25 +8,18 @@ import java.awt.SystemColor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.*;
-import javax.swing.*;
-import javax.swing.*;
 import java.awt.event.*;
+import menu.MenuSecre;
 
 public class MajEt extends JFrame implements ActionListener{
 
@@ -104,7 +95,7 @@ private JPanel panA1 = null;
 private JPanel panA11 = null;
 
 private JPanel panA12 = null;
-//déclaration des fenêtres
+
 private MenuSecre menuSec = new MenuSecre();
 	/**
 	 * This is the default constructor
@@ -194,7 +185,7 @@ private MenuSecre menuSec = new MenuSecre();
 						txtprenom.setText(pre);
 						txtdatenaisse.setText(datenai);
 						txtlieunaisse.setText(lieunaiss);
-						txtnationalite.setText(nationa);						//txtmatricule.setText(matricule);
+						txtnationalite.setText(nationa);						
 
 						txtadresse.setText(adress);
 						txtdate.setText(dateins);
@@ -287,7 +278,7 @@ private MenuSecre menuSec = new MenuSecre();
 				String classe=txtclasse.getText();
 			    String monta=txtmontant.getText();
 			
-				try{
+				try{ 
 					
 					Statement state = authentification.Connect.getInstance()
 					.createStatement(
@@ -361,12 +352,12 @@ private MenuSecre menuSec = new MenuSecre();
 			montantin = new JLabel();
 			montantin.setBounds(new Rectangle(32, 276, 128, 20));
 			montantin.setForeground(Color.blue);
-			montantin.setText("Montant_Inscrip:");
+			montantin.setText("Montant Inscrip:");
 			montantin.setFont(new Font("Elephant", Font.BOLD, 12));
 			annee = new JLabel();
 			annee.setBounds(new Rectangle(32, 231, 124, 16));
 			annee.setForeground(Color.blue);
-			annee.setText("Date_Inscription");
+			annee.setText("Date Inscription");
 			annee.setFont(new Font("Elephant", Font.BOLD, 12));
 			CLASE = new JLabel();
 			CLASE.setBounds(new Rectangle(32, 249, 114, 19));
@@ -411,7 +402,6 @@ private MenuSecre menuSec = new MenuSecre();
 			pan = new JPanel();
 			pan.setLayout(null);
 			pan.setBounds(new Rectangle(459, 283, 413, 310));
-			//pan.setBackground(Color.cyan);
 			pan.add(num, null);
 			pan.add(NOM, null);
 			pan.add(PRENOM, null);
@@ -551,7 +541,6 @@ private MenuSecre menuSec = new MenuSecre();
 			pane = new JPanel();
 			pane.setLayout(null);
 			pane.setBounds(new Rectangle(459, 605, 417, 106));
-		//	pane.setBackground(Color.cyan);
 			pane.add(getPrecedent(), null);
 			pane.add(getModifier(), null);
 			pane.add(getSupprimer(), null);
@@ -586,7 +575,6 @@ private MenuSecre menuSec = new MenuSecre();
 		if (precedent == null) {
 			precedent = new JButton();
 			precedent.setText("Precedent");
-			//precedent.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/retour.gif")));
 			precedent.setIcon(new ImageIcon("images/retour.gif"));
 			precedent.setBounds(new Rectangle(5, 58, 131, 34));
 			precedent.addActionListener(this);
@@ -602,7 +590,6 @@ private MenuSecre menuSec = new MenuSecre();
 	private JButton getQuitter() {
 		if (quitter == null) {
 			quitter = new JButton();
-			//quitter.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/quitter.gif")));
 			quitter.setIcon(new ImageIcon("images/quitter.gif"));
 			quitter.setBounds(new Rectangle(1091, 694, 116, 35));
 			quitter.setText("Quitter");
@@ -635,7 +622,6 @@ private MenuSecre menuSec = new MenuSecre();
 		if (modifier == null) {
 			modifier = new JButton();
 			modifier.setBounds(new Rectangle(152, 14, 132, 31));
-		//	modifier.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/modifier.gif")));
 			modifier.setIcon(new ImageIcon("images/modifier.gif"));
 			modifier.setText("Modifier");
 			modifier.addActionListener(this);
@@ -667,7 +653,6 @@ private MenuSecre menuSec = new MenuSecre();
 		if (chercher == null) {
 			chercher = new JButton();
 			chercher.setBounds(new Rectangle(5, 13, 129, 32));
-			//chercher.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/consulter.gif")));
 			chercher.setIcon(new ImageIcon("images/consulter.gif"));
 			chercher.setText("Chercher");
 			chercher.addActionListener(this);
@@ -700,7 +685,6 @@ private MenuSecre menuSec = new MenuSecre();
 			valider = new JButton();
 			valider.setText("Valider");
 			valider.setBounds(new Rectangle(293, 59, 116, 33));
-		//	valider.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/enregistrer.gif")));
 			valider.setIcon(new ImageIcon("images/enregistrer.gif"));
 		valider.addActionListener(this);
 		}
@@ -767,4 +751,4 @@ private MenuSecre menuSec = new MenuSecre();
 		return panA12;
 	}
 
-}  //  @jve:decl-index=0:visual-constraint="-258,-77"
+}  

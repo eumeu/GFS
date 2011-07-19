@@ -1,6 +1,7 @@
 package menu;
 
 import javax.swing.JPanel;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
@@ -11,11 +12,10 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.event.*;
-import java.awt.*;
 import java.sql.*;
 
 import javax.swing.JOptionPane;
-import menu.*;
+import menu.MenuAdministra;
 
 public class NewMenuAgent extends JFrame implements ActionListener{
 
@@ -49,14 +49,10 @@ public class NewMenuAgent extends JFrame implements ActionListener{
 
 	private JLabel cc = null;
 	
-	private JPanel panA1 = null;
+	
 
-	private JPanel panA11 = null;
-
-	//dÃ©claration des fenÃªtres
 	private MenuAdministra menuAdmin = new MenuAdministra();
 
-	private JButton majEtu;
 	/**
 	 * This is the default constructor
 	 */
@@ -78,45 +74,29 @@ public class NewMenuAgent extends JFrame implements ActionListener{
 		this.setSize(1300,800);
 		this.setContentPane(getJContentPane());
 		this.setIconImage(Toolkit.getDefaultToolkit().getImage(("image/ucad.jpg")));
-		this.setTitle("Menu Comptable");
+		this.setTitle("Menu Responsable Formation");
 		setVisible(true);
 		menuAdmin.setVisible(false);
 	}
 	
 	
-	public static Connection initConnection(){
-	       Connection co=null;
-	       String url="jdbc:mysql://localhost/base_gfs";
-	       try{
-	       	   Class.forName("org.gjt.mm.mysql.Driver");
-	       	   co=DriverManager.getConnection(url,"root","Sc0rpions");
-
-          
-           
-		   }
-		   catch(ClassNotFoundException fe){
-	       	    System.out.println("drv intro");
-	       	   }
-		   catch(SQLException se){
-		   System.out.println("Connection Impossible");
-		   }
-		   return co;
-
-	}
 	
 	
 	public void afficher(){
 		int b=0;
 	
 		String a=JOptionPane.showInputDialog(null,"Donner le numéro de l'etudiant dont vous voulez valider son paiement");
-		//String c=JOptionPane.showInputDialog(null,"donner la classe de l'etudiant dont vous voulez valider son paiement");
-		Connection maco=initConnection();
-		if(maco==null)return;
+		//Connection maco=initConnection();
+		//if(maco==null)return;
 		try
 		{
-			Statement st=maco.createStatement();
-			String req="select * from etudiant  ";
-			ResultSet rs=st.executeQuery(req);
+			Statement state = authentification.Connect.getInstance()
+			.createStatement(
+						ResultSet.TYPE_SCROLL_INSENSITIVE, 
+						ResultSet.CONCUR_READ_ONLY
+			);		
+						String req="select * from etudiant  ";
+			ResultSet rs=state.executeQuery(req);
 			while(rs.next())
 			{
 				if(a.equals(rs.getString("numero")))
@@ -131,16 +111,13 @@ public class NewMenuAgent extends JFrame implements ActionListener{
 				tr.txtnationalite.setText(rs.getString("nationalite").toString());
 				tr.txtclasse.setText(rs.getString("classe").toString());
 				tr.ZZZZ.setEnabled(false);
-				//this.dispose();
 				
 				}	
 				}
-			maco.close();
-			st.close();
+			rs.close();
+			state.close();
 			if(b==0)
 				JOptionPane.showMessageDialog(null, "Ce numéro n'existe pas dans la base");
-		//	this.dispose();
-		//	this.setVisible(true);
 	}
 			
 	catch(SQLException se){
@@ -196,19 +173,15 @@ public class NewMenuAgent extends JFrame implements ActionListener{
 		if (jContentPane == null) {
 			cc = new JLabel();
 			cc.setBounds(new Rectangle(3, -2, 1284, 94));
-			//cc.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/CHARGE.jpg")));
 			cc.setText(" ");
 			XX2 = new JLabel();
 			XX2.setBounds(new Rectangle(454, 413, 17, 16));
 			XX2.setText(" ");
-			//XX2.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/btn1.gif")));
 			XX1 = new JLabel();
 			XX1.setBounds(new Rectangle(453, 365, 16, 16));
 			XX1.setText(" ");
-			//XX1.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/btn1.gif")));
 			XX = new JLabel();
 			XX.setBounds(new Rectangle(453, 314, 14, 16));
-			//XX.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/btn1.gif")));
 			XX.setText(" ");
 			
 			valier1 = new JLabel();
@@ -240,7 +213,6 @@ public class NewMenuAgent extends JFrame implements ActionListener{
 			
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-			//jContentPane.setBackground(SystemColor.info);
 			jContentPane.add(getPANO(), null);
 			jContentPane.add(logo, null);
 			jContentPane.add(getQuitter(), null);
@@ -252,8 +224,6 @@ public class NewMenuAgent extends JFrame implements ActionListener{
 			jContentPane.add(XX2, null);
 			jContentPane.add(cc, null);
 			
-			//jContentPane.add(getPanA1(), null);
-			//jContentPane.add(getPanA11(), null);
 		}
 		return jContentPane;
 	}
@@ -268,7 +238,6 @@ public class NewMenuAgent extends JFrame implements ActionListener{
 			PANO = new JPanel();
 			PANO.setLayout(null);
 			PANO.setBounds(new Rectangle(529, 130, 300, 500));
-	//		PANO.setBackground(Color.cyan);
 			PANO.add(getValide_paiement(), null);
 			PANO.add(getListe_paiement(), null);
 			PANO.add(getCherchEtPaye(), null);
@@ -345,34 +314,4 @@ public class NewMenuAgent extends JFrame implements ActionListener{
 		return cherchEtPaye;
 	}
 
-	/**
-	 * This method initializes panA1	
-	 * 	
-	 * @return javax.swing.JPanel	
-	 */
-	private JPanel getPanA1() {
-		if (panA1 == null) {
-			panA1 = new JPanel();
-			panA1.setLayout(null);
-			panA1.setBounds(new Rectangle(5, 92, 1281, 17));
-			//panA1.setBackground(Color.black);
-		}
-		return panA1;
-	}
-
-	/**
-	 * This method initializes panA11	
-	 * 	
-	 * @return javax.swing.JPanel	
-	 */
-	private JPanel getPanA11() {
-		if (panA11 == null) {
-			panA11 = new JPanel();
-			panA11.setLayout(null);
-			panA11.setBounds(new Rectangle(1, 274, 1280, 10));
-		//	panA11.setBackground(Color.black);
-		}
-		return panA11;
-	}
-
-}  //  @jve:decl-index=0:visual-constraint="-13,-18"
+}
