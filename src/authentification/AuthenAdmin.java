@@ -87,11 +87,12 @@ public class AuthenAdmin extends JFrame implements ActionListener{
 			String pw = new String(pssw);
 			String MPRecup = r.getString("Password");
 			try {
-			    if (MD5Password.testPassword(pw, MPRecup))
+			    if (MD5Password.testPassword(pw, MPRecup) && (log.compareTo(LoginRecup)==0)){
 			  //  System.out.println("Les passwords sont vérifiés");
 			    	verif = true;
 					new menu.MenuAdmin();
 					this.dispose();
+			    }
 			    } catch (NoSuchAlgorithmException a) {
 			    a.printStackTrace();
 			    }

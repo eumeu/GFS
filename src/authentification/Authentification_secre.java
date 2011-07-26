@@ -83,19 +83,27 @@ public class Authentification_secre extends JFrame implements ActionListener{
 			ResultSet r = state.executeQuery("select login,password from utilisateurs where profil = 'secretaire'");
 			while (r.next()) {
 			String LoginRecup = r.getString("login");
-			//String log = txtlogin.getText();
+			String log = txtlogin.getText();
 			String pssw = txtpassword.getText();
 			String pw = new String(pssw);
 			String MPRecup = r.getString("password");
+			
+			 //System.out.println(LoginRecup);
+			// System.out.println(MPRecup);
+
+			// System.exit(0);
+			 
 			MD5Password.testPassword(pssw, MPRecup);
 			try {
 			    //if (((String.valueOf(txtlogin.getPassword()).compareTo(LoginRecup)==0)) && MD5Password.testPassword(pw, MPRecup)){
-				    if (MD5Password.testPassword(pw, MPRecup)){
+				    if (MD5Password.testPassword(pw, MPRecup) && (log.compareTo(LoginRecup)==0)){
 
-			   System.out.println("Les passwords sont vérifiés");
+			   System.out.println("Password MD5 et Login sont vérifiés");
 			    	verif = true;
-					//new menu.MenuSecre();
-					this.dispose();}
+					new menu.MenuSecre();
+					this.dispose();
+					//System.exit(0);
+					}
 			    } catch (NoSuchAlgorithmException a) {
 			    a.printStackTrace();
 			    }
