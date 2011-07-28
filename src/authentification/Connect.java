@@ -10,7 +10,7 @@ public class Connect{
 
 	private static String url, bdd="base_gfs";
 	private static String user="root";
-	private static String passwd="Sc0rpions";
+	private static String passwd="";
 	private static Connection connect;
 	
 	public Connect(String bdd, String user, String passwd) {
