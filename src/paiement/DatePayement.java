@@ -1,15 +1,11 @@
 package paiement;
 
-import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-import java.awt.GridBagLayout;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -18,18 +14,13 @@ import javax.swing.WindowConstants;
 
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.SystemColor;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
-import javax.swing.table.*;
-
 import java.util.Vector;
 import javax.swing.*;
 import java.awt.event.ActionListener;
-import java.util.*;
 import javax.swing.JRadioButton;
 
 
@@ -57,8 +48,6 @@ public class DatePayement extends JFrame implements ActionListener{
 
 	private JScrollPane scrol = null;
 
-//	private JButton quitter = null;
-
 	private JTable tab = null;
 
 	private JButton QUITTER = null;
@@ -75,7 +64,6 @@ public	 JComboBox txtclasse = null;
 	DefaultTableModel tabl;
 	Vector lign1=new Vector();  //  @jve:decl-index=0:
 	 Vector col=new Vector();
-	// Vector <String>vNomColonne=new Vector<String>();
 	 Vector vNomColonne=new Vector();
 
 	private JLabel jLabel = null;
@@ -156,17 +144,14 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 		txtclasse.setEnabled(true);
 		etnonpayer.setEnabled(true);
 		mois.setEnabled(false);
-    	//txtclasse.setEnabled(false);
     	etpayer.setEnabled(false);
 	}
 	if(e.getSource()==precedent){
-	//	new menu.MenuAgen();
 		this.dispose();
 		menuAgent.setVisible(true);
 		}
 	if(e.getSource()==etpayer)
 	{int trv=0;
-	//	String x=txtnum.getText();
 		String y=(String)txtclasse.getSelectedItem();
 		String v=(String)mois.getSelectedItem();
       Connection maCo=initConnection();
@@ -208,26 +193,19 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 	}
 	if(e.getSource()==etnonpayer)
 	{
-	//int trouv=0;
 		int trv=0;
-			//String x=txtnum.getText();
 			String y=(String)txtclasse.getSelectedItem();
 			String v=(String)mois.getSelectedItem();
 	      Connection maCo=initConnection();
 	      if(maCo==null)return;
 	      try{
 	     	 Statement st=maCo.createStatement();
-	     	//String req="Select  etudiant.numero numero,etudiant.nom nom,etudiant.prenom prenom,etudiant.datenais datenais,etudiant.lieunais lieunais from  etudiant where not exists(Select * from validerpaiement where etudiant.numero=validerpaiement.numero )";
 	     	String req="Select  etudiant.numero numero,etudiant.nom nom,etudiant.prenom prenom,etudiant.datenais datenais,etudiant.lieunais lieunais,  etudiant.classe classe                          from  etudiant where      not exists(Select * from validerpaiement where etudiant.numero=validerpaiement.numero)   and   etudiant.classe='"+y+"'      ";
-	     	 
-	     	 
-	     	 //String rq="Select count(numero) as nombre from etudiant,validerpaiement where etudiant.numero=validerpaiement.numero and etudiant.classe='"+y+"'";
-	     	 ResultSet rs=st.executeQuery(req);
+	     	ResultSet rs=st.executeQuery(req);
 	     	 tabl.setRowCount(0);
 	     	 while(rs.next())
 	     	    {
 	     		 trv=1;
-	     	//	 Vector <String>ligne=new Vector<String>();
 	     		 
 	     		Vector ligne=new Vector();
 	              String dn=rs.getString(3)+"/"+rs.getString(4)+"/"+rs.getString(4);
@@ -237,7 +215,6 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 	              ligne.addElement(rs.getString("prenom"));
 	              ligne.addElement(rs.getString("datenais"));
 	              ligne.addElement(rs.getString("lieunais"));
-	              //ligne.addElement(rs.getString("datenais"));
 	              ligne.addElement(dn);
 	              
 	             
@@ -247,7 +224,6 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 	     	if(trv==0)JOptionPane.showMessageDialog(null," aucun etudiant de la classe "+y+"  n'est a jour !!!!!! ");    		 
 	            rs.close();
 	            st.close();
-	       //     c.close();
 	                       		 
 	     	 }
 	      catch(SQLException se){
@@ -277,11 +253,9 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 			logo1 = new JLabel();
 			logo1.setBounds(new Rectangle(539, 298, 25, 17));
 			logo1.setText(" ");
-			//logo1.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/backdown.jpg")));
 			logo1.setIcon(new ImageIcon("images/backdown.jpg"));
 			logo = new JLabel();
 			logo.setBounds(new Rectangle(539, 277, 25, 16));
-		//	logo.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/backdown.jpg")));
 			logo.setIcon(new ImageIcon("images/backdown.jpg"));
 			logo.setText(" ");
 			titre1 = new JLabel();
@@ -296,11 +270,9 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 			titre.setText("Cliquez Ici Puis choisir Classe et Mois et le Button \"Etudiant Payer\"Pour Consulter les Etudiants a Jour");
 			jLabel = new JLabel();
 			jLabel.setBounds(new Rectangle(-3, -1, 1283, 104));
-		//	jLabel.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/formul17.jpg")));
 			jLabel.setText("");
 			jLabel2 = new JLabel();
 			jLabel2.setBounds(new Rectangle(2, 111, 349, 205));
-		//	jLabel2.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/tabet.gif")));
 			jLabel2.setText(" ");
 			du = new JLabel();
 			du.setBounds(new Rectangle(510, 351, 92, 23));
@@ -316,19 +288,16 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 			clas.setText("Classe  :");
 			jLabel1 = new JLabel();
 			jLabel1.setBounds(new Rectangle(590, 108, 170, 155));
-		//	jLabel1.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/ucad.jpg")));
 			jLabel1.setIcon(new ImageIcon("images/ucad.jpg"));
 			jLabel1.setText(" ");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-		//	jContentPane.setBackground(SystemColor.info);
 			jContentPane.add(jLabel1, null);
 			jContentPane.add(clas, null);
 			jContentPane.add(getJPanel(), null);
 			jContentPane.add(getMois(), null);
 			jContentPane.add(du, null);
 			jContentPane.add(getScrol(), null);
-		//	jContentPane.add(getQuitter(), null);
 			jContentPane.add(getQUITTER(), null);
 			jContentPane.add(jLabel2, null);
 			jContentPane.add(getTxtclasse(), null);
@@ -359,7 +328,6 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 			jPanel = new JPanel();
 			jPanel.setLayout(null);
 			jPanel.setBounds(new Rectangle(393, 384, 535, 48));
-		//	jPanel.setBackground(Color.cyan);
 			jPanel.add(getEtpayer(), null);
 			jPanel.add(getEtnonpayer(), null);
 		}
@@ -459,9 +427,6 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 			vNomColonne.addElement("prenom");
 			vNomColonne.addElement("datenais");
 			vNomColonne.addElement("lieunais");
-			
-			//vNomColonne.addElement("classe");
-			//vNomColonne.addElement("datepaiement");
 		
 		tabl=new DefaultTableModel(vNomColonne,0);
         tab=new JTable(tabl);
@@ -481,7 +446,6 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 			QUITTER = new JButton();
 			QUITTER.setBounds(new Rectangle(1045, 705, 147, 26));
 			QUITTER.setText("Quitter");
-			//QUITTER.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/quitter.gif")));
 			QUITTER.setIcon(new ImageIcon("images/quitter.gif"));
 
 			QUITTER.setFont(new Font("Elephant", Font.BOLD, 12));
@@ -499,14 +463,10 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 		if (txtclasse == null) {
 			txtclasse = new JComboBox();
 			txtclasse.addItem("LicPro");
-			//txtclasse.addItem("LPGI2");
-			//txtclasse.addItem("LPGI3");
-			//txtclasse.addItem("LPRT1");
 			txtclasse.addItem("M1 SIR");
 			txtclasse.addItem("M2 RETEL");
 			txtclasse.addItem("M2 SIR");
 			txtclasse.addItem("M2 RETEL");
-		//	txtclasse.addItem("MaDSI");
 			txtclasse.setBounds(new Rectangle(603, 319, 154, 23));
 			txtclasse.setForeground(Color.black);
 			txtclasse.addActionListener(this);
@@ -523,7 +483,6 @@ private NewMenuAgent menuAgent = new NewMenuAgent();
 		if (precedent == null) {
 			precedent = new JButton();
 			precedent.setBounds(new Rectangle(891, 707, 143, 26));
-			//precedent.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/retour.gif")));
 			precedent.setIcon(new ImageIcon("images/retour.gif"));
 
 			precedent.setText("Precedent");

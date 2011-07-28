@@ -1,23 +1,16 @@
 package paiement;
 
-import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.SystemColor;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.WindowConstants;
-
 import java.sql.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,10 +23,6 @@ import menu.*;
 
 
 public class FormPayement extends JFrame implements ActionListener{
-
-	//public static Connection maco=null;
-	//public static Statement st=null;
-	//public static ResultSet rs=null;
 
 	private static final long serialVersionUID = 1L;
 
@@ -137,9 +126,7 @@ public class FormPayement extends JFrame implements ActionListener{
 	       try{
 	       	   Class.forName("org.gjt.mm.mysql.Driver");
 	       	   co=DriverManager.getConnection(url,"root","Sc0rpions");
-
-           //System.out.println("ok");
-           JOptionPane.showMessageDialog(null,"connexion ok");
+	       	   JOptionPane.showMessageDialog(null,"connexion ok");
 		   }
 		   catch(ClassNotFoundException fe){
 	       	    System.out.println("drv intro");
@@ -265,27 +252,20 @@ public class FormPayement extends JFrame implements ActionListener{
 		if (jContentPane == null) {
 			FLECHE = new JLabel();
 			FLECHE.setBounds(new Rectangle(120, 156, 26, 25));
-			//FLECHE.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/backup.jpg")));
 			FLECHE.setIcon(new ImageIcon("images/backup.jpg"));
-
 			FLECHE.setText(" ");
 			ZZZZ = new JLabel();
 			ZZZZ.setBounds(new Rectangle(5, 182, 251, 408));
-			//ZZZZ.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/image14.gif")));
 			ZZZZ.setText(" ");
 			lab = new JLabel();
 			lab.setBounds(new Rectangle(2, 2, 1290, 105));
-			//lab.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/payeme.gif")));
 			lab.setText(" ");
 			loj = new JLabel();
 			loj.setBounds(new Rectangle(570, 116, 184, 160));
-			//loj.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/ucad.jpg")));
 			loj.setIcon(new ImageIcon("images/ucad.jpg"));
-
 			loj.setText(" ");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-			//jContentPane.setBackground(SystemColor.info);
 			jContentPane.add(loj, null);
 			jContentPane.add(getPan(), null);
 			jContentPane.add(getPane(), null);
@@ -390,7 +370,6 @@ public class FormPayement extends JFrame implements ActionListener{
 			pan = new JPanel();
 			pan.setLayout(null);
 			pan.setBounds(new Rectangle(460, 284, 413, 295));
-		//	pan.setBackground(Color.cyan);
 			pan.add(num, null);
 			pan.add(NOM, null);
 			pan.add(PRENOM, null);
@@ -423,7 +402,6 @@ public class FormPayement extends JFrame implements ActionListener{
 			pane = new JPanel();
 			pane.setLayout(null);
 			pane.setBounds(new Rectangle(463, 587, 417, 80));
-			//pane.setBackground(Color.cyan);
 			pane.add(getValider(), null);
 			pane.add(getAnnuler(), null);
 			pane.add(getPrecedent(), null);
@@ -440,9 +418,7 @@ public class FormPayement extends JFrame implements ActionListener{
 		if (valider == null) {
 			valider = new JButton();
 			valider.setBounds(new Rectangle(16, 24, 133, 33));
-			//valider.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/enregistrer.gif")));
 			valider.setIcon(new ImageIcon("images/enregistrer.gif"));
-
 			valider.setText("Valider");
 			valider.addActionListener(this);
 		}
@@ -473,9 +449,7 @@ public class FormPayement extends JFrame implements ActionListener{
 		if (precedent == null) {
 			precedent = new JButton();
 			precedent.setText("Precedent");
-			//precedent.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/retour.gif")));
 			precedent.setIcon(new ImageIcon("images/retour.gif"));
-
 			precedent.setBounds(new Rectangle(278, 23, 132, 34));
 			precedent.addActionListener(this);
 		}
@@ -491,9 +465,7 @@ public class FormPayement extends JFrame implements ActionListener{
 		if (quitter == null) {
 			quitter = new JButton();
 			quitter.setBounds(new Rectangle(1091, 647, 128, 35));
-			//quitter.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/quitter.gif")));
 			quitter.setIcon(new ImageIcon("images/quitter.gif"));
-
 			quitter.setText("Quitter");
 		}
 		return quitter;
@@ -508,9 +480,6 @@ public class FormPayement extends JFrame implements ActionListener{
 		if (txtmontants == null) {
 			txtmontants = new JComboBox();
 			txtmontants.addItem("60000");
-			//txtmontants.addItem("80000");
-			//txtmontants.addItem("30000");
-			//txtmontants.addItem("40000");
 			txtmontants.addItem("100000");
 			txtmontants.setBounds(new Rectangle(159, 250, 113, 19));
 			txtmontants.addActionListener(this);
@@ -551,9 +520,7 @@ public class FormPayement extends JFrame implements ActionListener{
 		if (aide == null) {
 			aide = new JButton();
 			aide.setBounds(new Rectangle(112, 116, 41, 37));
-			//aide.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/aide.gif")));
 			aide.setIcon(new ImageIcon("images/aide.gif"));
-
 			aide.addActionListener(this);
 		}
 		return aide;
@@ -589,4 +556,4 @@ public class FormPayement extends JFrame implements ActionListener{
 		return panA11;
 	}
 
-}  //  @jve:
+}  

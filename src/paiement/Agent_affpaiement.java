@@ -1,20 +1,15 @@
 package paiement;
 
-import java.awt.BorderLayout;
-
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 import java.awt.event.*;
-import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
-import java.awt.GridBagLayout;
 import java.awt.Color;
-import java.awt.SystemColor;
 import java.awt.Font;
 import javax.swing.JButton;
 import menu.*;
@@ -105,11 +100,9 @@ public void actionPerformed(ActionEvent e){
 			txtsomme.setForeground(Color.blue);
 			jLabel = new JLabel();
 			jLabel.setBounds(new Rectangle(12, 42, 200, 202));
-			//jLabel.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/image19.jpg")));
 			jLabel.setText(" ");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-			//jContentPane.setBackground(SystemColor.info);
 			jContentPane.add(jLabel, null);
 			jContentPane.add(getPano(), null);
 			jContentPane.add(recue, null);
@@ -188,7 +181,6 @@ public void actionPerformed(ActionEvent e){
 		if (quitter == null) {
 			quitter = new JButton();
 			quitter.setBounds(new Rectangle(624, 203, 125, 24));
-			//quitter.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/quitter.gif")));
 			quitter.setIcon(new ImageIcon("images/quitter.gif"));
 			quitter.setText("Quitter");
 			quitter.addActionListener(this);

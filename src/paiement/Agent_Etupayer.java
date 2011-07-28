@@ -1,13 +1,10 @@
 package paiement;
 
-import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import java.awt.Dimension;
 import javax.swing.JLabel;
 import java.awt.Rectangle;
-import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -17,7 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
-import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -58,11 +54,10 @@ public class Agent_Etupayer extends JFrame implements ActionListener{
 	DefaultTableModel tabl;
 	Vector lign1=new Vector();  //  @jve:decl-index=0:
 	 Vector col=new Vector();
-	// Vector <String>vNomColonne=new Vector<String>();
 	 Vector vNomColonne=new Vector();
 
 	
-	//déclaration des fenêtres
+	//declaration des fenêtres
 		private NewMenuAgent menuAgent = new NewMenuAgent();
 	
 	/**
@@ -95,8 +90,6 @@ public class Agent_Etupayer extends JFrame implements ActionListener{
 	       try{
 	       	   Class.forName("org.gjt.mm.mysql.Driver");
 	       	   co=DriverManager.getConnection(url,"root","Sc0rpions");
-
-           //System.out.println("ok");
            JOptionPane.showMessageDialog(null,"connexion ok");
 		   }
 		   catch(ClassNotFoundException fe){
@@ -142,14 +135,12 @@ public void actionPerformed(ActionEvent e){
      		 
      		Vector ligne=new Vector();
               String dn=rs.getString(3)+"/"+rs.getString(4)+"/"+rs.getString(4);
-             // ligne.addElement(rs.getString("numero"));
               ligne.addElement(rs.getString("nom"));
               
               ligne.addElement(rs.getString("prenom"));
               ligne.addElement(rs.getString("datenais"));
               
               ligne.addElement(rs.getString("lieunais"));
-             // ligne.addElement(rs.getString("datenais"));
               
               ligne.addElement(rs.getString("classe"));
               ligne.addElement(rs.getString("Mois"));
@@ -163,25 +154,13 @@ public void actionPerformed(ActionEvent e){
         if(trv==0)JOptionPane.showMessageDialog(null," Numero incorrecte !!! Veillez entrer le bon numero svp!! ");
             rs.close();
             st.close();
-       //     c.close();
                        		 
      	 }
       catch(SQLException se){
      	 System.out.println("connexion impossible"+se.getMessage());
       }	
 	}
-	}
-
-
-		
-		
-
-
-	
-	
-	
-	
-	
+}
 	
 	/**
 	 * This method initializes jContentPane
@@ -192,11 +171,9 @@ public void actionPerformed(ActionEvent e){
 		if (jContentPane == null) {
 			CCX = new JLabel();
 			CCX.setBounds(new Rectangle(14, 85, 302, 86));
-			//CCX.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/111.jpg")));
 			CCX.setText(" ");
 			CC = new JLabel();
 			CC.setBounds(new Rectangle(103, 1, 795, 73));
-		//	CC.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/paiementparetudonnee.gif")));
 			CC.setText(" ");
 			num = new JLabel();
 			num.setBounds(new Rectangle(372, 90, 91, 20));
@@ -205,7 +182,6 @@ public void actionPerformed(ActionEvent e){
 			num.setText("Numero  :");
 			jContentPane = new JPanel();
 			jContentPane.setLayout(null);
-		//	jContentPane.setBackground(SystemColor.info);
 			jContentPane.add(num, null);
 			jContentPane.add(getTxtnum(), null);
 			jContentPane.add(getValider(), null);
@@ -241,7 +217,6 @@ public void actionPerformed(ActionEvent e){
 		if (valider == null) {
 			valider = new JButton();
 			valider.setBounds(new Rectangle(335, 133, 131, 27));
-		//	valider.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/enregistrer.gif")));
 			valider.setIcon(new ImageIcon("images/enregistrer.gif"));
 			valider.setForeground(Color.black);
 			valider.setFont(new Font("Elephant", Font.BOLD, 12));
@@ -260,7 +235,6 @@ public void actionPerformed(ActionEvent e){
 		if (quitter == null) {
 			quitter = new JButton();
 			quitter.setBounds(new Rectangle(472, 133, 120, 28));
-		//	quitter.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/quitter.gif")));
 			quitter.setIcon(new ImageIcon("images/quitter.gif"));
 			quitter.setForeground(Color.black);
 			quitter.setFont(new Font("Elephant", Font.BOLD, 12));
@@ -279,7 +253,6 @@ public void actionPerformed(ActionEvent e){
 		if (retour == null) {
 			retour = new JButton();
 			retour.setBounds(new Rectangle(601, 134, 120, 26));
-		//	retour.setIcon(new ImageIcon(getClass().getResource("/GFS/ressources/retour.gif")));
 			retour.setIcon(new ImageIcon("images/retour.gif"));
 			retour.setForeground(Color.black);
 			retour.setFont(new Font("Elephant", Font.BOLD, 12));
@@ -312,7 +285,6 @@ public void actionPerformed(ActionEvent e){
 		if (tab == null) {
 			tab = new JTable();
 			
-			//vNomColonne.addElement("numero");
 			vNomColonne.addElement("nom");
 
 			vNomColonne.addElement("prenom");
@@ -332,4 +304,4 @@ public void actionPerformed(ActionEvent e){
 		return tab;
 	}
 
-}  //  @jve:decl-index=0:visual-constraint="10,10"
+}  
