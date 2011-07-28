@@ -6,7 +6,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.SystemColor;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,20 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import java.sql.*;
 import java.util.*;
-import java.util.Vector.*;
 import javax.swing.JTable;
 import java.awt.event.*;
 
 import javax.swing.JScrollPane;
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
